@@ -1,23 +1,44 @@
 ---
-layout: default
+
 ---
 
-<div class="home">
+<!DOCTYPE html>
+<html>
 
-  <h1 class="page-heading">Posts</h1>
+  {% include head.html %}
+  <link rel="stylesheet" type="text/css" href="css/home.css">
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+  <body>
+    <div id="banner-wrap" class="wsite-background wsite-custom-background">
 
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
+      <div id="banner" class="container">
+        <div id="banner-inner">
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+          <h2><span class="wsite-text wsite-headline">
+            medhistree.com
+          </span></h2>
 
-</div>
+          <p><span class="wsite-text wsite-headline-paragraph">
+            Follow us on Twitter @medhistree to join our beta and learn more about the medhistree project.
+          </span></p>
+
+          <div style="text-align:center;">
+            <div style="height: 0px; overflow: hidden;"></div>
+            <a class="wsite-button wsite-button-large wsite-button-highlight" href="https://twitter.com/medhistree" >
+              <span class="wsite-button-inner">Follow Us</span>
+            </a>
+            <div style="height: 0px; overflow: hidden;"></div>
+          </div>
+        </div> <!--end banner-inner-->
+      </div>
+
+    </div> <!--end banner-wrap-->
+
+
+    {% include footer.html %}
+
+  </body>
+
+</html>
+
+

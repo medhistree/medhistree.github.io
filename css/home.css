@@ -52,7 +52,7 @@
  #header table{ border-collapse: collapse; border-spacing: 0; width:100%; height: ; }
  #header table td { vertical-align: middle; text-align: right; }
  .wsite-logo { font-family: "Crimson Text",serif; font-size: 2.25em; font-weight: 600; font-style : italic; text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.137); }
- #banner h2 { font-family:'Josefin Slab' sans-serif; font-size: 4.75em; text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.35); color:#fff; letter-spacing:2px; margin: 0 auto ; }
+ #banner h2 { font-family:'Palatino' !important; font-size: 4.75em; text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.35); color:#fff; letter-spacing:2px; margin: 0 auto ; }
  .wsite-headline-paragraph { font-size: 0.875em; font-family: 'Lato', sans-serif; color: rgb(255, 255, 255); font-weight: bold; text-transform: uppercase; text-align: center; letter-spacing: 2px; text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.196); }
  .wsite-background { background: url(theme/main_bg.jpg?1430254294) no-repeat center / cover; }
  .wsite-social { vertical-align: middle; font-size: 16px; white-space: normal; }

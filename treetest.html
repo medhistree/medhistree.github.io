@@ -1,0 +1,122 @@
+---
+
+---
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>medhistree</title>
+    <style>
+
+/* This sets the color for "TK" nodes to a light blue green. */
+g.type-TK > rect {
+  fill: #00ffd0;
+}
+
+text {
+  font-weight: 300;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serf;
+  font-size: 14px;
+}
+
+.node rect {
+  stroke: #999;
+  fill: #fff;
+  stroke-width: 1.5px;
+}
+
+.edgePath path {
+  stroke: #333;
+  stroke-width: 1.5px;
+}
+
+body {
+    width: 960px;
+  margin: 0 auto;
+  color: #333;
+  font-weight: 300;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serf;
+}
+
+svg {
+  border: 1px solid #ccc;
+  overflow: hidden;
+  margin: 0 auto;
+  width: 900px;
+  height: 600px;
+}
+
+    </style>
+</head>
+<body>
+  <svg></svg>
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script src='http://cpettitt.github.io/project/dagre-d3/latest/dagre-d3.min.js'></script>
+  <script src="abbytree.js"></script>
+  <script>
+    // Node click handler
+    function click(d, i)
+    {
+        console.log(d); //considering dot has a title attribute
+    }
+
+    // Create the input graph
+    var g = new dagreD3.graphlib.Graph()
+      .setGraph({})
+      .setDefaultEdgeLabel(function() { return {}; });
+
+    var node_dict = {};
+
+    // Add nodes for each of the people in the sample tree data
+    tree_data.forEach(function(person) {
+      g.setNode(person.id, person);
+      node_dict[person.id] = person;
+    });
+
+    g.nodes().forEach(function(v) {
+      var node = g.node(v);
+      // Round the corners of the nodes
+      node.rx = node.ry = 5;
+    });
+
+     // Add our edges
+      tree_data.forEach(function(person) {
+        person.kids.forEach(function(child) {
+          g.setEdge(person.id, child);
+        });
+      });
+
+    // Create the renderer
+    var render = new dagreD3.render();
+
+    // Set up an SVG group so that we can translate the final graph.
+    var svg = d3.select("svg"),
+        svgGroup = svg.append("g"),
+        inner = svg.select("g");
+
+    // Set up zoom support
+    var zoom = d3.behavior.zoom().on("zoom", function() {
+          inner.attr("transform", "translate(" + d3.event.translate + ")" +
+                                      "scale(" + d3.event.scale + ")");
+        });
+    svg.call(zoom);
+
+
+    // Run the renderer. This is what draws the final graph.
+    render(d3.select("svg g"), g);
+
+    // Set up the click handlers
+    d3.selectAll("g.node").on("click", click);
+
+    var initialScale = 0.75;
+    zoom
+      .translate([(svg.attr("width") - g.graph().width * initialScale) / 2, 20])
+      .scale(initialScale)
+      .event(svg);
+    svg.attr('height', g.graph().height * initialScale + 40);
+
+  </script>
+
+</body>
+</html>
